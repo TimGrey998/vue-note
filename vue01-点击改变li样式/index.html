@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue练习1</title>
+    <script src="vue.js"></script>
+    <style>
+      li {
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .turnRed {
+        color: red;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>实现点击文字改变样式</h2>
+      <li
+        v-for="(item,index) in Movies"
+        :class="{turnRed:currentIndex == index}"
+        @click="changeStyle(index)"
+      >
+        {{item}}
+      </li>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          Movies: ["肖申克的救赎", "摔跤吧爸爸", "勇士", "霸王别姬"],
+          isRed: false,
+          currentIndex: -1,
+        },
+        methods: {
+          changeStyle: function (index) {
+            this.currentIndex = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
