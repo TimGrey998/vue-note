@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on参数问题</title>
+    <script src="../vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- btnClick1本身不需要参数，所以括号可以省略 -->
+      <button @click="btnClick1">情况1</button>
+      <!-- btnClick2是需要参数的，但是在v-on事件监听时我们没有传入参数，
+        那么vue会默认将浏览器生成event事件作为对象传入到btnClick2中 -->
+      <button @click="btnClick2">情况2</button>
+      <!-- 既需要监听浏览器的event事件又需要传参 -->
+      <!-- 手动获取浏览器参数的event对象：$event -->
+      <button @click="btnClick3('aaaaa',$event)">情况3</button>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+          btnClick1() {
+            console.log("加不加括号都可以");
+          },
+          btnClick2(a) {
+            console.log(a);
+          },
+          btnClick3(a, event) {
+            console.log("这是我传入的参数:" + a);
+            console.log("这是浏览器的event事件:", event);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

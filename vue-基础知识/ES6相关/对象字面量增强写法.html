@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>对象字面量增强写法</title>
+  </head>
+  <body>
+    <script>
+      //ES5
+      const name = "Tim Grey";
+      const age = 19;
+      const height = 181;
+      const person1 = {
+        name: name,
+        age: age,
+        height: height,
+        run : function() {
+          console.log("I'm running");
+        }
+      };
+      console.log(person1);
+      //ES6
+      const person2 = {
+        name,
+        age,
+        height,
+        run() {
+          console.log("I'm running");
+        }
+      };
+      console.log(person2);
+    </script>
+  </body>
+</html>

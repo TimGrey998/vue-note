@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>var与let</title>
+  </head>
+  <body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+      //可以将var视为javascript失败的设计
+
+      //通过一个简单的效果来看看var与let的区别，有五个按钮，点击对应按钮会打印出序号
+
+      //通过var定义i，只能通过闭包来实现想达到的效果，如果不通过闭包，由于没有作用域的限制，i会直接经过循环后被赋值5来使用
+      var btns = document.getElementsByTagName("button");
+      for (var i = 0; i < 5; i++) {
+        (function (i) {
+          btns[i].addEventListener("click", function () {
+            num = i + 1;
+            console.log("第" + num + "个按钮被点击(通过var定义循环变量的函数)");
+          });
+        })(i);
+      }
+
+      //但如果通过let来定义，会使i有自己的作用域，不会影响到大括号内部的使用
+      for (let i = 0; i < 5; i++) {
+        btns[i].addEventListener("click", function () {
+          num = i + 1;
+          console.log("第" + num + "个按钮被点击(通过let定义循环变量的函数)");
+        });
+      }
+    </script>
+  </body>
+</html>
